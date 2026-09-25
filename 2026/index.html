@@ -342,8 +342,6 @@ a:hover { color: var(--link-red-deep); }
   gtag('js', new Date());
   gtag('config', 'G-SV5WGMDSH4');
 </script>
-<script async src="https://t1.daumcdn.net/kas/static/kp.js"
-        onload="kakaoPixel('529372128419492012').pageView();"></script>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 <style>
   
@@ -1755,17 +1753,6 @@ a:hover { color: var(--link-red-deep); }
       link_label: (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100),
       link_url: el.getAttribute('href') || ''
     });
-  });
-
-  // 카카오 픽셀 서비스신청 - 구글폼을 실제로 여는 링크에서만, 페이지당 한 번.
-  // 다른 신청 버튼 3개는 #join 으로 스크롤만 해서, 거기서 보내면 광고가 '첫 버튼 탭'을 학습한다.
-  // pointerdown 은 쓰지 않는다 - 모바일에서 버튼 위에서 시작한 스크롤까지 전환으로 잡힌다.
-  var KAKAO_PIXEL = '529372128419492012', kpSent = false;
-  document.addEventListener('click', function (e) {
-    if (kpSent || !e.target.closest('a[href*="forms.gle"]')) return;
-    if (typeof window.kakaoPixel !== 'function') return;
-    kpSent = true;
-    window.kakaoPixel(KAKAO_PIXEL).signUp();
   });
 
   // 펼침 - 코스 스토리(하이브리드 결정의 실제 열람률) / FAQ(어떤 질문이 궁금한지)
