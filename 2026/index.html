@@ -2315,6 +2315,24 @@ a:hover { color: var(--link-red-deep); }
     var FEE = 50000, MIN_MEMBERS = 2, MAX_MEMBERS = 50;
     var cur = 0, submitted = false, sending = false, uid = 0;
 
+    // ---- 단계별 계측 (2026-09-30) ----
+    // 신청서 안에서 어디까지 갔는지 본다: 열기 → 2·3·4단계 도착 → 제출(application_submit).
+    // 중간에 닫으면 닫은 단계를, 제출이 실패하면 짧은 사유 코드를 보낸다. 개인정보는 넣지 않는다.
+    // 열기·단계 도착은 페이지를 연 동안 한 번씩만 보낸다(앞뒤로 오가도 숫자가 부풀지 않게).
+    // 파라미터는 이미 등록된 맞춤 측정기준(program·link_label)만 쓴다. 단계명은 언어와 상관없이 한글로.
+    var reached = {};
+    function track(name, params) {
+      if (typeof gtag !== 'function') return;
+      var p = { program: 'fwr', form_lang: LANG };
+      for (var k in params) p[k] = params[k];
+      gtag('event', name, p);
+    }
+    function stepLabel(i) {
+      var s = steps[i];
+      return (i + 1) + '/' + steps.length + ' ' +
+        ((flow() === 'group' && s.getAttribute('data-title-group')) || s.getAttribute('data-title'));
+    }
+
     // ---- 영어 신청서 (#apply-en) ----
     // 같은 신청서를 화면 글자만 영어로 바꿔 보여 준다. 선택지 값(value)은 한글 그대로 저장해
     // 시트에서 한글 신청과 섞여도 같은 값으로 모인다. 동의·티셔츠·기부 문구는 기존 구글폼 영어 원문.
@@ -2752,10 +2770,15 @@ a:hover { color: var(--link-red-deep); }
       }
       document.body.classList.add('apply-open');
       render(true);
+      if (!reached.open && !submitted) {
+        reached.open = true;
+        track('application_open', { link_label: LANG === 'en' ? 'English' : '한국어' });
+      }
     }
     function onClosed() {
       document.body.classList.remove('apply-open');
       if (/^#apply(-en)?$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+      if (!submitted && !sending) track('application_close', { link_label: stepLabel(cur) });
     }
     function close() {
       if (canModal) dlg.close(); else { dlg.removeAttribute('open'); onClosed(); }
@@ -2841,6 +2864,10 @@ a:hover { color: var(--link-red-deep); }
         }
       }
       render(true);
+      if (!reached[cur]) {
+        reached[cur] = true;
+        track('application_step_' + (cur + 1), { link_label: stepLabel(cur) });
+      }
     }
 
     form.addEventListener('submit', function (e) {
@@ -2934,6 +2961,10 @@ a:hover { color: var(--link-red-deep); }
       }).catch(function (err) {
         // 원인 파악용: 서버가 돌려준 error(예: missing, 시트 오류) 또는 네트워크 차단이 콘솔에 남는다
         if (window.console) console.error('[apply] 제출 실패:', err && err.message);
+        // 사유는 정해진 코드만 보낸다(서버 오류 문장을 그대로 보내지 않는다)
+        var em = (err && err.message) || '';
+        track('application_error', { link_label: err && err.name === 'AbortError' ? 'timeout'
+          : /^(HTTP \d+|missing|email|member_count|member_missing|rejected)$/.test(em) ? em : 'other' });
         submitErr.hidden = false;
         submitErr.focus();
       }).then(function () {
