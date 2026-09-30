@@ -2474,6 +2474,7 @@ a:hover { color: var(--link-red-deep); }
       '참가비 및 결제': 'Payment',
       '접수 완료': 'Submitted',
       '제출하는 중이에요…': 'Submitting…',
+      '조금만 더 기다려 주세요…': 'Almost there, please wait…',
       '계좌번호를 복사했어요.': 'Account number copied.',
       '복사가 안 돼요. 계좌번호를 직접 적어 주세요.': 'Couldn’t copy. Please write down the account number.',
       '링크를 복사했어요. 친구에게 붙여넣어 보내세요.': 'Link copied. Paste it to share with friends.',
@@ -2587,13 +2588,16 @@ a:hover { color: var(--link-red-deep); }
       age_check: '연령을 확인해 주세요.'
     };
 
-    // 유입 경로(UTM) → 숨김 필드
-    try {
-      var qs = new URLSearchParams(location.search);
-      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
-        if (form.elements[k]) form.elements[k].value = (qs.get(k) || '').slice(0, 200);
-      });
-    } catch (e) {}
+    // 유입 경로(UTM) → 숨김 필드. 제출 뒤 새 신청서로 되돌릴 때도 다시 채운다(form.reset()이 비운다)
+    function fillUtm() {
+      try {
+        var qs = new URLSearchParams(location.search);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+          if (form.elements[k]) form.elements[k].value = (qs.get(k) || '').slice(0, 200);
+        });
+      } catch (e) {}
+    }
+    fillUtm();
 
     function val(name) {
       var el = form.elements[name];
@@ -2779,6 +2783,20 @@ a:hover { color: var(--link-red-deep); }
       document.body.classList.remove('apply-open');
       if (/^#apply(-en)?$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
       if (!submitted && !sending) track('application_close', { link_label: stepLabel(cur) });
+      // 제출을 마친 뒤 닫으면 다음에 열 때 새 신청서로 시작한다(2026-09-30. 전에는 완료 화면이 계속 떴다)
+      if (submitted) resetForm();
+    }
+    function resetForm() {
+      form.reset();
+      roster.innerHTML = '';
+      [].forEach.call(form.querySelectorAll('.is-invalid'), function (b) { b.classList.remove('is-invalid'); });
+      [].forEach.call(form.querySelectorAll('.ap-err'), function (e) { e.textContent = ''; e.hidden = true; });
+      [].forEach.call(form.querySelectorAll('[aria-invalid]'), function (i) { i.removeAttribute('aria-invalid'); });
+      submitErr.hidden = true;
+      fillUtm();
+      cur = 0; submitted = false; reached = {};
+      syncCond();
+      render(false);
     }
     function close() {
       if (canModal) dlg.close(); else { dlg.removeAttribute('open'); onClosed(); }
@@ -2922,25 +2940,15 @@ a:hover { color: var(--link-red-deep); }
       submitBtn.disabled = true;
       submitBtn.textContent = t('제출하는 중이에요…');
       submitErr.hidden = true;
+      // 구글 답이 10초 넘게 걸리는 일이 잦다(2026-09-30 실측 2~40초) → 기다려 달라는 문구로 바꾼다
+      var slow = setTimeout(function () { if (sending) submitBtn.textContent = t('조금만 더 기다려 주세요…'); }, 8000);
 
       var req;
       if (!APPLY_ENDPOINT) {
         if (window.console) console.warn('[apply] APPLY_ENDPOINT 가 비어 있어 저장하지 않았어요 (미리보기 모드)');
         req = Promise.resolve({ ok: true });
       } else {
-        var ctrl = 'AbortController' in window ? new AbortController() : null;
-        var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 20000);
-        // text/plain 이면 CORS 사전 요청 없이 Apps Script 로 바로 간다
-        req = fetch(APPLY_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(data),
-          signal: ctrl ? ctrl.signal : undefined
-        }).then(function (r) {
-          clearTimeout(timer);
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.json();
-        });
+        req = post(data, 1);
       }
 
       req.then(function (res) {
@@ -2964,13 +2972,50 @@ a:hover { color: var(--link-red-deep); }
         // 사유는 정해진 코드만 보낸다(서버 오류 문장을 그대로 보내지 않는다)
         var em = (err && err.message) || '';
         track('application_error', { link_label: err && err.name === 'AbortError' ? 'timeout'
-          : /^(HTTP \d+|missing|email|member_count|member_missing|rejected)$/.test(em) ? em : 'other' });
+          : /^(HTTP \d+|missing|email|member_count|member_missing|rejected|network|not_saved|bad_json)$/.test(em) ? em : 'other' });
         submitErr.hidden = false;
         submitErr.focus();
       }).then(function () {
+        clearTimeout(slow);
         sending = false;
         submitBtn.disabled = false;
         submitBtn.textContent = t('신청서 제출하기');
+      });
+    }
+
+    // 저장 요청. 2026-09-30 실측: Apps Script 답이 2~40초로 들쭉날쭉하고(그래서 기다리는 시간을 20초 → 60초로),
+    // 가끔 구글이 404 안내 페이지를 주거나, 제출(POST)을 한 번 더 돌려보내며 GET 으로 바꿔 doGet 의
+    // '작동 중' 답({ok:true, service})이 온다. 뒤의 경우를 성공으로 읽으면 저장 없이 완료 화면이 뜬다.
+    // 이 셋과 네트워크 오류는 저장 전에 멈춘 것이라 두 번까지 다시 보낸다. 시간 초과는 이미 저장됐을 수
+    // 있어 다시 보내지 않는다(중복 줄 방지).
+    function retryable(msg) { var e = new Error(msg); e.retry = true; return e; }
+    function post(data, attempt) {
+      var ctrl = 'AbortController' in window ? new AbortController() : null;
+      var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 60000);
+      // text/plain 이면 CORS 사전 요청 없이 Apps Script 로 바로 간다
+      return fetch(APPLY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) {
+        clearTimeout(timer);
+        if (!r.ok) throw retryable('HTTP ' + r.status);
+        return r.json().catch(function () { throw retryable('bad_json'); });
+      }, function (err) {
+        clearTimeout(timer);
+        if (err && err.name === 'AbortError') throw err;
+        throw retryable('network');
+      }).then(function (res) {
+        if (res && res.service) throw retryable('not_saved');
+        return res;
+      }).catch(function (err) {
+        if (err && err.retry && attempt < 3) {
+          track('application_retry', { link_label: err.message });
+          return new Promise(function (ok) { setTimeout(ok, 1500 * attempt); })
+            .then(function () { return post(data, attempt + 1); });
+        }
+        throw err;
       });
     }
 
