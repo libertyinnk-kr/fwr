@@ -610,6 +610,8 @@ a:hover { color: var(--link-red-deep); }
   .goods-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .gcard { background: #fff; border: 1px solid var(--border-default); padding: 36px 32px; text-align: center; }
   .gcard svg { display: block; width: 100%; height: auto; max-width: 260px; margin: 0 auto 22px; }
+  
+  .gcard .gimg { display: block; width: 100%; height: auto; max-width: 260px; aspect-ratio: 300 / 280; object-fit: cover; margin: 0 auto 22px; }
   .gcard h3 { font-family: var(--font-kr-display); font-weight: 700; font-size: 19px; margin: 0 0 10px; color: var(--ink); }
   .gcard p { font-size: 14px; line-height: 1.75; color: var(--ink); margin: 0; word-break: keep-all; }
   .gcard .tag, .kitem .tag, .sponsor-box .tag {
@@ -1450,20 +1452,10 @@ a:hover { color: var(--link-red-deep); }
         </div>
         <div class="gcard reveal">
           <span class="tag">Medal</span>
-          <svg viewBox="0 0 300 280" role="img" aria-label="레드 박스 모양 완주 메달 시안">
-            <polygon points="118,0 150,96 132,104 104,0" fill="#ED3928"/>
-            <polygon points="182,0 150,96 168,104 196,0" fill="#B9271A"/>
-            <circle cx="150" cy="104" r="10" fill="#8A1D12"/>
-            <rect x="92" y="112" width="116" height="116" fill="#B9271A"/>
-            <rect x="100" y="120" width="100" height="100" fill="#ED3928"/>
-            <rect x="116" y="136" width="68" height="52" fill="#FFFFFF"/>
-            <rect x="134" y="146" width="32" height="32" fill="none" stroke="#ED3928" stroke-width="5"/>
-            <text x="150" y="211" text-anchor="middle" font-family="'GmarketSans','Pretendard',sans-serif"
-                  font-weight="700" font-size="13" fill="#FFFFFF" letter-spacing="2">FINISHER</text>
-            <polygon points="100,120 130,120 100,150" fill="#FFFFFF" opacity="0.18"/>
-          </svg>
+          <img class="gimg" src="fwr-medal-mockup.jpg" width="780" height="728" loading="lazy" decoding="async"
+               alt="프리덤 워크 앤 런 2026 완주 메달 시안, 앞면과 뒷면">
           <h3>완주 메달</h3>
-          <p>상자를 닮은 사각 메달을 준비하고 있어요. 걷기 참가자분들께도 똑같이 드려요.</p>
+          <p>6km 완주를 기념하는 메달이에요. 걷기 참가자분들께도 똑같이 드려요.</p>
         </div>
         <div class="gcard reveal">
           <span class="tag">Bib</span>
