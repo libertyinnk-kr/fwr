@@ -1111,6 +1111,19 @@ a:hover { color: var(--link-red-deep); }
   .ap-donate { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--border-default); }
   .ap-donate-box { margin: 12px 0 0; }
   .ap-check--all small { display: block; margin-top: 4px; font-family: var(--font-kr); font-weight: 500; font-size: 12.5px; color: #6E6E6E; }
+  
+  .ap-field--all { margin-bottom: 12px; padding-bottom: 0; border-bottom: none; }
+  .ap-consents { margin: 0 0 26px 10px; padding: 2px 0 2px 18px; border-left: 2px solid var(--border-default); }
+  .ap-consent { margin: 0 0 10px; }
+  .ap-consent:last-child { margin-bottom: 0; }
+  .ap-check--sub { padding: 6px 0; border: none; border-radius: 0; background: none; font-size: 14.5px; }
+  .ap-check--sub:has(input:checked) { background: none; }
+  .ap-check--sub .req { margin-left: 3px; }
+  .ap-check--sub .opt { margin-left: 6px; font-weight: 500; font-size: 12.5px; color: #6E6E6E; }
+  .ap-consent .ap-more { margin: 0 0 0 32px; }
+  .ap-consent .ap-more summary { padding: 0 0 4px; }
+  .ap-consent .ap-err { margin-left: 32px; }
+  .is-invalid .ap-check--sub { box-shadow: none; } 
 
   .ap-box { margin: 0 0 28px; padding: 20px; background: var(--paper); border-left: 3px solid var(--link-red); }
   .ap-box > p { margin: 0 0 14px; font-size: 14px; line-height: 1.75; color: var(--ink); word-break: keep-all; }
@@ -1169,7 +1182,7 @@ a:hover { color: var(--link-red-deep); }
     border: 4px solid var(--link-red); color: var(--link-red);
   }
   .ap-done .ap-step-title { font-size: 24px; margin-bottom: 6px; }
-  .ap-done .lead { margin: 0 0 26px; font-size: 16px; line-height: 1.7; color: var(--ink); }
+  .ap-done .lead { margin: 0 0 26px; font-size: 16px; line-height: 1.7; color: var(--ink); word-break: keep-all; text-wrap: pretty; }
   .ap-done .ap-box { text-align: left; }
   .ap-done .contact { margin: 26px 0 0; font-size: 13px; line-height: 1.85; color: #6E6E6E; word-break: keep-all; }
   .ap-preview {
@@ -1300,7 +1313,7 @@ a:hover { color: var(--link-red-deep); }
         </div>
         <div class="tr">
           <div class="th">참가비</div>
-          <div class="td"><strong>50,000원</strong><small>전액이 링크의 프로그램에 쓰여요. <a href="#impact">참가비의 쓰임 보기</a><br />참가비 외에 링크 활동을 추가로 후원하고 싶으신 분은 아래 자주 묻는 질문이나 참가 신청서를 확인해 주세요.</small></div>
+          <div class="td"><strong>50,000원</strong><small>전액이 링크의 프로그램에 쓰여요. <a href="#impact">참가비의 쓰임 보기</a><br />참가비 외에 링크 활동을 추가로 후원하고 싶으신 분은 아래 자주 묻는 질문이나 참가 신청서를 확인해 주세요.<br />참가비 입금이 확인되면 참가자분을 위한 기프트 주문 제작과 행사 준비가 바로 시작돼요. 이후 행사에 참석하지 못하게 되시더라도 참가비 환불은 어려운 점 양해 부탁드려요.</small></div>
         </div>
         <div class="tr">
           <div class="th">신청 기간</div>
@@ -1674,6 +1687,12 @@ a:hover { color: var(--link-red-deep); }
           </div>
         </details>
         <details>
+          <summary>참가 등록 후에 행사에 참석하지 못하게 되었어요. 참가비를 환불받을 수 있나요?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="a">
+            <p>아쉽지만 참가비는 환불해 드리기 어려워요. 입금이 확인되면 참가자분을 위한 기프트 주문 제작과 행사 준비가 바로 시작되기 때문이에요. 보내주신 참가비는 링크의 활동에 소중히 쓰여요.</p>
+          </div>
+        </details>
+        <details>
           <summary>단체 신청 및 결제가 가능한가요?<span class="plus" aria-hidden="true"></span></summary>
           <div class="a">
             <p>네, 가능해요. 행사 총괄 노지현 담당자(010-6518-1559, jroh@libertyinnorthkorea.org)에게 문의해 주세요.</p>
@@ -1805,7 +1824,7 @@ a:hover { color: var(--link-red-deep); }
           <legend class="ap-label">신청 유형<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
           <div class="ap-choices ap-choices--2 ap-choices--type">
             <label class="ap-choice"><input type="radio" name="apply_type" value="개인 신청" /><span>개인 신청<small>한 사람씩 신청서를 작성해요</small></span></label>
-            <label class="ap-choice"><input type="radio" name="apply_type" value="단체 신청" /><span>여러 명과 함께 신청 (단체)<small>대표자가 명단을 적고 참가비를 모아 입금해요</small></span></label>
+            <label class="ap-choice"><input type="radio" name="apply_type" value="단체 신청" /><span>단체 신청 (2인&nbsp;이상)<small>대표자가 명단을 적고 참가비를 모아 입금해요</small></span></label>
           </div>
           <p class="ap-err" id="ap-apply_type-err" hidden></p>
         </fieldset>
@@ -1814,44 +1833,45 @@ a:hover { color: var(--link-red-deep); }
         <div class="ap-field ap-field--all">
           <label class="ap-check ap-check--all"><input type="checkbox" id="apAgreeAll" /><span>모두 동의합니다<small>아래 필수 동의와 [선택] 뉴스레터 수신 동의를 포함해요</small></span></label>
         </div>
-        <fieldset class="ap-field" data-field="privacy_consent" aria-describedby="ap-privacy_consent-err">
-          <legend class="ap-label">개인정보 수집 및 이용 동의<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
-          <label class="ap-check"><input type="checkbox" name="privacy_consent" value="동의" /><span>위 내용에 동의합니다.</span></label>
-          <details class="ap-more">
-            <summary>내용 보기</summary>
-            <dl>
-              <dd>링크(LiNK)는 「개인정보 보호법」에 따라 신청자의 개인정보를 안전하게 처리합니다.</dd>
-              <dt>수집 항목</dt><dd>이름, 이메일, 휴대폰 번호(선택 입력 시)</dd>
-              <dt>수집 및 이용 목적</dt><dd>행사 참석자 확인 및 안내, 링크의 활동 소식 및 캠페인 등의 소식 수신(뉴스레터)</dd>
-              <dt>보유 및 이용 기간</dt><dd>수집일로부터 1년, (뉴스레터 구독 동의한 분만) 구독 해지 시까지</dd>
-            </dl>
-          </details>
-          <p class="ap-err" id="ap-privacy_consent-err" hidden></p>
-        </fieldset>
-        <fieldset class="ap-field" data-field="media_consent" aria-describedby="ap-media_consent-err">
-          <legend class="ap-label">미디어(사진·영상) 활용 동의<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
-          <label class="ap-check"><input type="checkbox" name="media_consent" value="동의" /><span>위 내용에 동의합니다.</span></label>
-          <details class="ap-more">
-            <summary>내용 보기</summary>
-            <dl>
-              <dd>프리덤 워크 &amp; 런 행사 중에는 사진 및 영상 촬영이 진행되며, 참가자의 모습이 촬영물에 포함될 수 있습니다.</dd>
-              <dt>촬영 내용</dt><dd>행사 참가 모습이 담긴 사진 및 영상</dd>
-              <dt>활용 목적</dt><dd>링크 홈페이지, 소셜미디어(SNS), 뉴스레터, 홍보 자료 등에 행사 소개 및 홍보 목적으로 게재</dd>
-              <dt>보유 및 활용 기간</dt><dd>촬영 원본은 3년 후 파기하며, 이미 게재된 홍보물은 삭제 요청 시까지 유지됩니다.</dd>
-            </dl>
-          </details>
-          <p class="ap-err" id="ap-media_consent-err" hidden></p>
-        </fieldset>
-        <div data-flow="group" hidden>
-          <fieldset class="ap-field" data-field="member_consent" aria-describedby="ap-member_consent-err">
-            <legend class="ap-label">단체 참가자 동의 확인<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
-            <label class="ap-check"><input type="checkbox" name="member_consent" value="확인" /><span>명단에 적는 참가자 모두에게 위 개인정보 수집·이용 및 미디어 활용 내용을 알리고 동의를 받았습니다.</span></label>
-            <p class="ap-err" id="ap-member_consent-err" hidden></p>
+        <div class="ap-consents">
+          <fieldset class="ap-field ap-consent" data-field="privacy_consent" aria-describedby="ap-privacy_consent-err">
+            <legend class="sr-only">개인정보 수집 및 이용 동의</legend>
+            <label class="ap-check ap-check--sub"><input type="checkbox" name="privacy_consent" value="동의" /><span>개인정보 수집 및 이용 동의<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></span></label>
+            <details class="ap-more">
+              <summary>내용 보기</summary>
+              <dl>
+                <dd>링크(LiNK)는 「개인정보 보호법」에 따라 신청자의 개인정보를 안전하게 처리합니다.</dd>
+                <dt>수집 항목</dt><dd>이름, 이메일, 휴대폰 번호(선택 입력 시)</dd>
+                <dt>수집 및 이용 목적</dt><dd>행사 참석자 확인 및 안내, 링크의 활동 소식 및 캠페인 등의 소식 수신(뉴스레터)</dd>
+                <dt>보유 및 이용 기간</dt><dd>수집일로부터 1년, (뉴스레터 구독 동의한 분만) 구독 해지 시까지</dd>
+              </dl>
+            </details>
+            <p class="ap-err" id="ap-privacy_consent-err" hidden></p>
           </fieldset>
-        </div>
-        <div class="ap-field" data-field="newsletter">
-          <p class="ap-label">[선택] 뉴스레터 수신 동의</p>
-          <label class="ap-check"><input type="checkbox" name="newsletter" value="동의" /><span>링크(LiNK)의 활동 소식을 담은 뉴스레터를 이메일로 받아보고 싶습니다.</span></label>
+          <fieldset class="ap-field ap-consent" data-field="media_consent" aria-describedby="ap-media_consent-err">
+            <legend class="sr-only">미디어(사진·영상) 활용 동의</legend>
+            <label class="ap-check ap-check--sub"><input type="checkbox" name="media_consent" value="동의" /><span>미디어(사진·영상) 활용 동의<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></span></label>
+            <details class="ap-more">
+              <summary>내용 보기</summary>
+              <dl>
+                <dd>프리덤 워크 &amp; 런 행사 중에는 사진 및 영상 촬영이 진행되며, 참가자의 모습이 촬영물에 포함될 수 있습니다.</dd>
+                <dt>촬영 내용</dt><dd>행사 참가 모습이 담긴 사진 및 영상</dd>
+                <dt>활용 목적</dt><dd>링크 홈페이지, 소셜미디어(SNS), 뉴스레터, 홍보 자료 등에 행사 소개 및 홍보 목적으로 게재</dd>
+                <dt>보유 및 활용 기간</dt><dd>촬영 원본은 3년 후 파기하며, 이미 게재된 홍보물은 삭제 요청 시까지 유지됩니다.</dd>
+              </dl>
+            </details>
+            <p class="ap-err" id="ap-media_consent-err" hidden></p>
+          </fieldset>
+          <div data-flow="group" hidden>
+            <fieldset class="ap-field ap-consent" data-field="member_consent" aria-describedby="ap-member_consent-err">
+              <legend class="sr-only">단체 참가자 동의 확인</legend>
+              <label class="ap-check ap-check--sub"><input type="checkbox" name="member_consent" value="확인" /><span>단체 참가자 동의 확인<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span><small>명단에 적는 참가자 모두에게 위 개인정보 수집·이용 및 미디어 활용 내용을 알리고 동의를 받았습니다.</small></span></label>
+              <p class="ap-err" id="ap-member_consent-err" hidden></p>
+            </fieldset>
+          </div>
+          <div class="ap-field ap-consent" data-field="newsletter">
+            <label class="ap-check ap-check--sub"><input type="checkbox" name="newsletter" value="동의" /><span>뉴스레터 수신 동의<span class="opt">선택</span><small>링크(LiNK)의 활동 소식을 담은 뉴스레터를 이메일로 받아보고 싶습니다.</small></span></label>
+          </div>
         </div>
       </div>
 
@@ -1940,6 +1960,7 @@ a:hover { color: var(--link-red-deep); }
             <label class="ap-choice"><input type="radio" name="referral" value="광고" /><span>광고</span></label>
             <label class="ap-choice"><input type="radio" name="referral" value="지인 소개" /><span>지인 소개</span></label>
             <label class="ap-choice"><input type="radio" name="referral" value="링크 SNS·뉴스레터" /><span>링크 SNS·뉴스레터</span></label>
+            <label class="ap-choice"><input type="radio" name="referral" value="렐프 참가자" /><span>렐프(LELP) 참가자</span></label>
             <label class="ap-choice"><input type="radio" name="referral" value="기타" /><span>기타</span></label>
           </div>
           <p class="ap-err" id="ap-referral-err" hidden></p>
@@ -1982,47 +2003,56 @@ a:hover { color: var(--link-red-deep); }
         </div>
       </div>
 
-      <div class="ap-step" data-title="참가비 및 결제" hidden>
-        <h3 class="ap-step-title" tabindex="-1" data-focus>참가비 입금 방법을 확인해 주세요</h3>
-        <p class="ap-step-lead">참가비 전액은 링크의 프로그램에 쓰여요.</p>
-
-        <div class="ap-box">
-          <div class="ap-bank">
-            <div class="ap-bank-row"><span class="k">참가비</span><strong class="amt js-fee">50,000원</strong></div>
-            <div class="ap-bank-row" data-flow="group" hidden><span class="k">참가 인원</span><strong>총 <span class="js-fee-count">2</span>명</strong></div>
-            <div class="ap-bank-row"><span class="k">입금 계좌</span><strong>KEB하나은행 174-890023-16404</strong></div>
-            <div class="ap-bank-row"><span class="k">예금주</span><strong>링크</strong></div>
+      <div class="ap-step" data-title="참가비 및 결제" data-title-lelp="신청 마무리" hidden>
+        <div data-show-if="referral!=렐프 참가자">
+          <h3 class="ap-step-title" tabindex="-1" data-focus>참가비 입금 방법을 확인해 주세요</h3>
+          <p class="ap-step-lead">참가비 전액은 링크의 프로그램에 쓰여요.</p>
+          <div class="ap-box">
+            <div class="ap-bank">
+              <div class="ap-bank-row"><span class="k">참가비</span><strong class="amt js-fee">50,000원</strong></div>
+              <div class="ap-bank-row" data-flow="group" hidden><span class="k">참가 인원</span><strong>총 <span class="js-fee-count">2</span>명</strong></div>
+              <div class="ap-bank-row"><span class="k">입금 계좌</span><strong>KEB하나은행 174-890023-16404</strong></div>
+              <div class="ap-bank-row"><span class="k">예금주</span><strong>링크</strong></div>
+            </div>
+            <button type="button" class="btn btn--ghost-dark btn--sm" data-copy="17489002316404">계좌번호 복사</button>
+            <p>입금이 확인되면 신청이 완료되고, 확정 이메일을 보내드려요.</p>
+            <p>입금 후에는 기프트 제작이 바로 시작돼 환불이 어려워요.</p>
           </div>
-          <button type="button" class="btn btn--ghost-dark btn--sm" data-copy="17489002316404">계좌번호 복사</button>
-          <p>입금이 확인되면 신청이 완료되고, 확정 이메일을 보내드려요.</p>
-        </div>
 
-        <div class="ap-field" data-field="depositor">
-          <label class="ap-label" for="ap-depositor">입금자명<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
-          <input class="ap-input" id="ap-depositor" name="depositor" type="text" maxlength="50" aria-describedby="ap-depositor-help ap-depositor-err" />
-          <p class="ap-help" id="ap-depositor-help">참가자 본인과 다를 경우 입금 확인용이에요.</p>
-          <p class="ap-err" id="ap-depositor-err" hidden></p>
+          <div class="ap-field" data-field="depositor">
+            <label class="ap-label" for="ap-depositor">입금자명<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
+            <input class="ap-input" id="ap-depositor" name="depositor" type="text" maxlength="50" aria-describedby="ap-depositor-help ap-depositor-err" />
+            <p class="ap-help" id="ap-depositor-help">참가자 본인과 다를 경우 입금 확인용이에요.</p>
+            <p class="ap-err" id="ap-depositor-err" hidden></p>
+          </div>
+          <fieldset class="ap-field" data-field="deposit_confirm" aria-describedby="ap-deposit_confirm-err">
+            <legend class="ap-label">입금 확인<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
+            <label class="ap-check"><input type="checkbox" name="deposit_confirm" value="네, 입금할게요" /><span>네, 입금할게요</span></label>
+            <p class="ap-err" id="ap-deposit_confirm-err" hidden></p>
+          </fieldset>
         </div>
-        <fieldset class="ap-field" data-field="deposit_confirm" aria-describedby="ap-deposit_confirm-err">
-          <legend class="ap-label">입금 확인<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
-          <label class="ap-check"><input type="checkbox" name="deposit_confirm" value="네, 입금할게요" /><span>네, 입금할게요</span></label>
-          <p class="ap-err" id="ap-deposit_confirm-err" hidden></p>
-        </fieldset>
+        <div data-show-if="referral=렐프 참가자" hidden>
+          <h3 class="ap-step-title" tabindex="-1" data-focus>마지막으로 확인해 주세요</h3>
+          <p class="ap-step-lead">궁금한 점이 있으면 남겨 주시고, 신청서를 제출해 주세요.</p>
+          <div class="ap-box"><p>렐프(LELP) 참가자가 아니라면 이전 단계로 돌아가 '이 행사를 어떻게 알게 되셨나요?'를 다시 골라 주세요.</p></div>
+        </div>
         <div class="ap-field" data-field="question">
           <label class="ap-label" for="ap-question">궁금한 점<span class="opt">선택</span></label>
           <textarea class="ap-input" id="ap-question" name="question" maxlength="2000" placeholder="행사에 대해 궁금한 점이 있다면 편하게 남겨 주세요."></textarea>
         </div>
         <div class="ap-field ap-donate" data-field="extra_donation">
-          <label class="ap-check"><input type="checkbox" name="extra_donation" value="추가 기부" /><span>참가비 외에 추가 기부하기<small>선택 · 체크하면 기부 방법을 안내해 드려요</small></span></label>
+          <label class="ap-check"><input type="checkbox" name="extra_donation" value="추가 기부" /><span><span data-show-if="referral!=렐프 참가자">참가비 외에 추가 기부하기</span><span data-show-if="referral=렐프 참가자" hidden>링크에 기부하기 (선택 사항)</span><small>선택 · 체크하면 기부 방법을 안내해 드려요</small></span></label>
           <div data-show-if="extra_donation=추가 기부" hidden>
             <div class="ap-box ap-donate-box">
-              <p>참가비 외에 북한 난민 구호, 탈북민 교육·활동 지원, 북한 주민 정보 접근성 향상을 위한 링크의 활동에 추가로 기부할 수 있어요. 아래 계좌로 이체하시면 기부금 영수증을 받으실 수 있어요(이체한 명의로만 발급).</p>
+              <p data-show-if="referral!=렐프 참가자">참가비 외에 북한 난민 구호, 탈북민 교육·활동 지원, 북한 주민 정보 접근성 향상을 위한 링크의 활동에 추가로 기부할 수 있어요. 아래 계좌로 이체하시면 기부금 영수증을 받으실 수 있어요(이체한 명의로만 발급).</p>
+              <p data-show-if="referral=렐프 참가자" hidden>북한 난민 구호, 탈북민 교육·활동 지원, 북한 주민 정보 접근성 향상을 위한 링크의 활동에 기부할 수 있어요. 아래 계좌로 이체하시면 기부금 영수증을 받으실 수 있어요(이체한 명의로만 발급).</p>
               <div class="ap-bank">
                 <div class="ap-bank-row"><span class="k">기부 계좌</span><strong>국민은행 004401-04-200526</strong></div>
                 <div class="ap-bank-row"><span class="k">예금주</span><strong>(재)한빛누리 (링크)</strong></div>
               </div>
               <button type="button" class="btn btn--ghost-dark btn--sm" data-copy="00440104200526">계좌번호 복사</button>
-              <p>참가비 계좌와 다른 계좌예요. 이체 후 담당자가 영수증 발급을 위해 연락드려요.</p>
+              <p data-show-if="referral!=렐프 참가자">참가비 계좌와 다른 계좌예요. 이체 후 담당자가 영수증 발급을 위해 연락드려요.</p>
+              <p data-show-if="referral=렐프 참가자" hidden>이체 후 담당자가 영수증 발급을 위해 연락드려요.</p>
             </div>
           </div>
         </div>
@@ -2035,17 +2065,20 @@ a:hover { color: var(--link-red-deep); }
         </div>
         <p class="ap-preview" id="apPreview" hidden>미리보기라서 제출 내용이 저장되지 않았어요. 저장소가 연결되면 실제로 접수돼요.</p>
         <h3 class="ap-step-title" tabindex="-1" data-focus>신청서가 접수됐어요.</h3>
-        <p class="lead">마지막 단계만 남았어요.</p>
+        <div data-show-if="referral!=렐프 참가자"><p class="lead">마지막 단계만 남았어요.</p></div>
+        <div data-show-if="referral=렐프 참가자" hidden><p class="lead">렐프 참가자인지 확인한 뒤 참가 확정 이메일을 보내드려요.</p></div>
         <p class="ap-gid" id="apGidRow" hidden>단체 신청 번호 <strong id="apGid"></strong><br /><span>문의하실 때 이 번호를 알려 주세요.</span></p>
-        <div class="ap-box">
-          <div class="ap-bank">
-            <div class="ap-bank-row"><span class="k">참가비</span><strong class="amt js-fee">50,000원</strong></div>
-            <div class="ap-bank-row" data-flow="group" hidden><span class="k">참가 인원</span><strong>총 <span class="js-fee-count">2</span>명</strong></div>
-            <div class="ap-bank-row"><span class="k">입금 계좌</span><strong>KEB하나은행 174-890023-16404</strong></div>
-            <div class="ap-bank-row"><span class="k">예금주</span><strong>링크</strong></div>
+        <div data-show-if="referral!=렐프 참가자">
+          <div class="ap-box">
+            <div class="ap-bank">
+              <div class="ap-bank-row"><span class="k">참가비</span><strong class="amt js-fee">50,000원</strong></div>
+              <div class="ap-bank-row" data-flow="group" hidden><span class="k">참가 인원</span><strong>총 <span class="js-fee-count">2</span>명</strong></div>
+              <div class="ap-bank-row"><span class="k">입금 계좌</span><strong>KEB하나은행 174-890023-16404</strong></div>
+              <div class="ap-bank-row"><span class="k">예금주</span><strong>링크</strong></div>
+            </div>
+            <button type="button" class="btn btn--ghost-dark btn--sm" data-copy="17489002316404">계좌번호 복사</button>
+            <p>입금이 확인되면 참가 확정 이메일을 보내드려요.</p>
           </div>
-          <button type="button" class="btn btn--ghost-dark btn--sm" data-copy="17489002316404">계좌번호 복사</button>
-          <p>입금이 확인되면 참가 확정 이메일을 보내드려요.</p>
         </div>
         <button type="button" class="btn btn--primary" data-share data-ga="share_click">함께할 사람에게 알리기</button>
         <p class="contact">문의: 행사 총괄 노지현 담당자<br />010-6518-1559 · <a href="mailto:jroh@libertyinnorthkorea.org">jroh@libertyinnorthkorea.org</a></p>
@@ -2338,7 +2371,7 @@ a:hover { color: var(--link-red-deep); }
       '(필수)': '(required)',
       '개인 신청': 'Individual',
       '한 사람씩 신청서를 작성해요': 'One person per form',
-      '여러 명과 함께 신청 (단체)': 'Registering with others (group)',
+      '단체 신청 (2인\u00a0이상)': 'Group (2 or more)',
       '대표자가 명단을 적고 참가비를 모아 입금해요': 'A representative lists everyone and pays for the group',
       '모두 동의합니다': 'I agree to all',
       '아래 필수 동의와 [선택] 뉴스레터 수신 동의를 포함해요': 'Includes the required consents below and the [optional] newsletter',
@@ -2363,6 +2396,7 @@ a:hover { color: var(--link-red-deep); }
       '단체 참가자 동의 확인': 'Group participants’ consent',
       '명단에 적는 참가자 모두에게 위 개인정보 수집·이용 및 미디어 활용 내용을 알리고 동의를 받았습니다.': 'I have informed everyone on the list about the personal information and media consent above, and they have agreed.',
       '[선택] 뉴스레터 수신 동의': '[Optional] Newsletter Subscription',
+      '뉴스레터 수신 동의': 'Newsletter subscription',
       '링크(LiNK)의 활동 소식을 담은 뉴스레터를 이메일로 받아보고 싶습니다.': 'I’d like to receive LiNK’s newsletter with updates on our work by email.',
       '누가 함께하는지 알려 주세요': 'Tell us about yourself',
       '참가 확정 이메일과 기념 티셔츠 준비에 쓰여요.': 'We’ll use this for your confirmation email and event T-shirt.',
@@ -2387,6 +2421,7 @@ a:hover { color: var(--link-red-deep); }
       '광고': 'Ad',
       '지인 소개': 'Friend or acquaintance',
       '링크 SNS·뉴스레터': 'LiNK social media or newsletter',
+      '렐프(LELP) 참가자': 'LELP participant',
       '기타': 'Other',
       '어디서 알게 되셨는지 적어 주세요': 'Tell us where',
       '어떻게 참가하실지 골라 주세요': 'Choose how you’ll take part',
@@ -2415,6 +2450,7 @@ a:hover { color: var(--link-red-deep); }
       '링크': '링크 (LiNK)',
       '계좌번호 복사': 'Copy account number',
       '입금이 확인되면 신청이 완료되고, 확정 이메일을 보내드려요.': 'Your registration is complete once we confirm your payment, and we’ll send you a confirmation email.',
+      '입금 후에는 기프트 제작이 바로 시작돼 환불이 어려워요.': 'Gift production starts right after payment, so refunds aren’t possible.',
       '입금자명': 'Payer name',
       '참가자 본인과 다를 경우 입금 확인용이에요.': 'For matching your payment if the payer is different from the participant.',
       '입금 확인': 'Payment',
@@ -2430,6 +2466,14 @@ a:hover { color: var(--link-red-deep); }
       '미리보기라서 제출 내용이 저장되지 않았어요. 저장소가 연결되면 실제로 접수돼요.': 'This is a preview, so your submission wasn’t saved.',
       '신청서가 접수됐어요.': 'We’ve received your registration.',
       '마지막 단계만 남았어요.': 'Just one step left.',
+      '신청 마무리': 'Finish up',
+      '마지막으로 확인해 주세요': 'One last check',
+      '링크에 기부하기 (선택 사항)': 'Donate to LiNK (optional)',
+      '북한 난민 구호, 탈북민 교육·활동 지원, 북한 주민 정보 접근성 향상을 위한 링크의 활동에 기부할 수 있어요. 아래 계좌로 이체하시면 기부금 영수증을 받으실 수 있어요(이체한 명의로만 발급).': 'You can donate to support LiNK’s work: rescuing North Korean refugees, providing education and support for North Korean defectors, and improving North Koreans’ access to information. Transfer to the account below to receive a donation receipt (issued only in the name of the account holder who made the transfer).',
+      '이체 후 담당자가 영수증 발급을 위해 연락드려요.': 'After your transfer, our staff will contact you to issue a donation receipt.',
+      '궁금한 점이 있으면 남겨 주시고, 신청서를 제출해 주세요.': 'Leave any questions below, then submit your registration.',
+      '렐프(LELP) 참가자가 아니라면 이전 단계로 돌아가 \'이 행사를 어떻게 알게 되셨나요?\'를 다시 골라 주세요.': 'Not a LELP participant? Go back and choose a different answer to “How did you hear about this event?”',
+      '렐프 참가자인지 확인한 뒤 참가 확정 이메일을 보내드려요.': 'We’ll confirm you’re a LELP participant and then send your confirmation email.',
       '단체 신청 번호': 'Group registration number',
       '문의하실 때 이 번호를 알려 주세요.': 'Please mention this number if you contact us.',
       '입금이 확인되면 참가 확정 이메일을 보내드려요.': 'We’ll send your confirmation email once we receive your payment.',
@@ -2487,8 +2531,8 @@ a:hover { color: var(--link-red-deep); }
       '연령을 확인해 주세요.': 'Confirm the age group.',
       '입금자명을 적어 주세요.': 'Enter the payer name.',
       '입금 여부를 체크해 주세요.': 'Confirm that you’ll make the payment.',
-      '개인정보 수집·이용에 동의해야 신청할 수 있어요.': 'You need to agree to the personal information consent to register.',
-      '미디어 활용에 동의해야 신청할 수 있어요.': 'You need to agree to the media consent to register.'
+      '개인정보 수집 및 이용 동의에 체크해 주세요.': 'Please check the consent to collection and use of personal information.',
+      '미디어(사진·영상) 활용 동의에 체크해 주세요.': 'Please check the consent to use of media (photos/videos).',
     };
     function t(ko) { return LANG === 'en' && EN[ko] !== undefined ? EN[ko] : ko; }
     window.FWR = window.FWR || {};
@@ -2561,8 +2605,8 @@ a:hover { color: var(--link-red-deep); }
       age_check: { req: '연령을 확인해 주세요.' },
       depositor: { req: '입금자명을 적어 주세요.' },
       deposit_confirm: { req: '입금 여부를 체크해 주세요.' },
-      privacy_consent: { req: '개인정보 수집·이용에 동의해야 신청할 수 있어요.' },
-      media_consent: { req: '미디어 활용에 동의해야 신청할 수 있어요.' }
+      privacy_consent: { req: '개인정보 수집 및 이용 동의에 체크해 주세요.' },
+      media_consent: { req: '미디어(사진·영상) 활용 동의에 체크해 주세요.' }
     };
     // 개인 신청 - 시트 열 순서와 같다 (apps-script/Code.gs FIELDS)
     var FIELDS = ['name', 'email', 'phone', 'job', 'tshirt', 'category', 'entry_type', 'group_name',
@@ -2591,6 +2635,9 @@ a:hover { color: var(--link-red-deep); }
     }
     fillUtm();
 
+    // 2026-10-08: 렐프 참가자는 참가비가 없어 입금 칸이 숨겨진다. Code.gs 가 입금자명·입금 확인·추가 기부를
+    // 필수로 봐서 비워 보내면 'missing' 으로 막히므로, 재배포 없이 시트에서 바로 구분되는 표시값을 채운다
+    var LELP = '렐프 참가자', LELP_PAY = '참가비 없음 (렐프 참가자)', LELP_NA = '기부 없음 (렐프 참가자)';
     function val(name) {
       var el = form.elements[name];
       if (!el) return '';
@@ -2653,8 +2700,9 @@ a:hover { color: var(--link-red-deep); }
         el.hidden = el.getAttribute('data-flow') !== f;
       });
       [].forEach.call(form.querySelectorAll('[data-show-if]'), function (el) {
-        var p = el.getAttribute('data-show-if').split('=');
-        el.hidden = val(p[0]) !== p[1];
+        var c = el.getAttribute('data-show-if'), neg = c.indexOf('!=') > -1;
+        var p = c.split(neg ? '!=' : '=');
+        el.hidden = neg ? val(p[0]) === p[1] : val(p[0]) !== p[1];
       });
       if (f === 'group' && !roster.children.length) { addMember(); addMember(); }
       syncFee();
@@ -2748,7 +2796,8 @@ a:hover { color: var(--link-red-deep); }
       stepNo.textContent = submitted ? t('접수 완료') : (cur + 1) + '/' + n;
       var st = steps[cur];
       stepName.textContent = submitted ? '' :
-        t((flow() === 'group' && st.getAttribute('data-title-group')) || st.getAttribute('data-title'));
+        t((val('referral') === LELP && st.getAttribute('data-title-lelp')) ||
+          (flow() === 'group' && st.getAttribute('data-title-group')) || st.getAttribute('data-title'));
       bar.style.width = ((submitted ? n : cur + 1) / n * 100) + '%';
       body.scrollTop = 0;
       if (focus) {
@@ -2900,6 +2949,7 @@ a:hover { color: var(--link-red-deep); }
         if (!g.newsletter) g.newsletter = '미동의';
         if (!g.extra_donation) g.extra_donation = '참가비만';
         g.referral = referralValue();
+        if (g.referral === LELP) { g.depositor = LELP_PAY; g.deposit_confirm = LELP_PAY; if (g.extra_donation === '참가비만') g.extra_donation = LELP_NA; }
         g.members = [].map.call(roster.querySelectorAll('[data-member]'), function (m) {
           return { name: mval(m, 'name'), tshirt: mval(m, 'tshirt'), category: mval(m, 'category'), age_check: mval(m, 'age_check') };
         });
@@ -2922,6 +2972,7 @@ a:hover { color: var(--link-red-deep); }
       d.entry_type = '개인 참가';
       d.group_name = '';
       d.referral = referralValue();
+      if (d.referral === LELP) { d.depositor = LELP_PAY; d.deposit_confirm = LELP_PAY; if (d.extra_donation === '참가비만') d.extra_donation = LELP_NA; }
       return d;
     }
 
