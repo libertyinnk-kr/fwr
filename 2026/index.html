@@ -624,11 +624,13 @@ a:hover { color: var(--link-red-deep); }
   
   #gifts .kit-grid { grid-template-columns: repeat(3, 1fr); }
   
-  #sponsors .kit-grid { grid-template-columns: repeat(3, 1fr); }
+  #sponsors .kit-grid { grid-template-columns: repeat(4, 1fr); }
+  
+  @media (max-width: 1024px) { #sponsors .kit-grid { grid-template-columns: 1fr 1fr; } }
   
   .kitem { background: #fff; border: 1px solid var(--border-default); padding: 26px 24px; text-align: center; }
   .kitem--soon { background: var(--paper); }
-  .kitem h4 { font-family: var(--font-kr-display); font-weight: 700; font-size: 16px; margin: 0 0 8px; color: var(--ink); }
+  .kitem h4 { font-family: var(--font-kr-display); font-weight: 700; font-size: 16px; margin: 0 0 8px; color: var(--ink); word-break: keep-all; }
   .kitem p { font-size: 13.5px; color: var(--ink); margin: 0; line-height: 1.7; word-break: keep-all; }
   
   .logo-slot {
@@ -1651,10 +1653,15 @@ a:hover { color: var(--link-red-deep); }
           <div class="logo-slot"><img src="sis.svg" alt="Seoul International School 로고" /></div>
           <h4>서울국제학교 링크팀</h4>
         </div>
-        <div class="kitem kitem--soon reveal">
-          <span class="tag">Coming Soon</span>
-          <h4>함께할 곳들</h4>
-          <p>더 많은 후원 · 협찬사를 준비하고 있어요. 확정되는 대로 이곳에서 소개해 드릴게요.</p>
+        <div class="kitem reveal">
+          <span class="tag">Sponsor</span>
+          <div class="logo-slot"><img src="ttgh.png" alt="사단법인 땅강하늘 로고" /></div>
+          <h4>사단법인 땅강하늘</h4>
+        </div>
+        <div class="kitem reveal">
+          <span class="tag">Sponsor</span>
+          <div class="logo-slot"><img src="onehada.png" alt="사단법인 원하다 로고" /></div>
+          <h4>사단법인 원하다</h4>
         </div>
       </div>
     </div>
