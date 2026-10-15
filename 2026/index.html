@@ -1078,6 +1078,12 @@ a:hover { color: var(--link-red-deep); }
   .ap-choices { display: grid; gap: 10px; }
   .ap-choices--2 { grid-template-columns: 1fr 1fr; }
   .ap-choices--3 { grid-template-columns: repeat(3, 1fr); }
+  
+  .ap-choices--4 { grid-template-columns: repeat(4, 1fr); }
+  .ap-choices--5 { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .ap-choices--4 .ap-choice span, .ap-choices--5 .ap-choice span { padding-left: 4px; padding-right: 4px; }
+  .ap-subhead { margin: 0 0 8px; font-size: 13px; font-weight: 600; line-height: 1.5; color: #6E6E6E; }
+  .ap-choices + .ap-subhead { margin-top: 16px; }
   .ap-choice { position: relative; display: block; cursor: pointer; }
   .ap-choice input { position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; margin: 0; }
   .ap-choice span {
@@ -1452,18 +1458,10 @@ a:hover { color: var(--link-red-deep); }
       <div class="goods-grid">
         <div class="gcard reveal">
           <span class="tag">T-shirt</span>
-          <svg viewBox="0 0 300 280" role="img" aria-label="프리덤 워크 앤 런 2026 기념 티셔츠 시안">
-            <path d="M104 38 L60 62 L36 116 L74 136 L74 252 L226 252 L226 136 L264 116 L240 62 L196 38 Q150 64 104 38 Z"
-                  fill="#FFFFFF" stroke="#D9D9D9" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M104 38 Q150 64 196 38 Q150 78 104 38 Z" fill="#EFEFEF"/>
-            <rect x="126" y="112" width="48" height="48" fill="none" stroke="#ED3928" stroke-width="6"/>
-            <text x="150" y="188" text-anchor="middle" font-family="'GmarketSans','Pretendard',sans-serif"
-                  font-weight="700" font-size="13" fill="#ED3928" letter-spacing="1">FREEDOM</text>
-            <text x="150" y="208" text-anchor="middle" font-family="'GmarketSans','Pretendard',sans-serif"
-                  font-weight="700" font-size="13" fill="#ED3928" letter-spacing="1">WALK &amp; RUN</text>
-          </svg>
+          <img class="gimg" src="fwr-tee-mockup.jpg" width="780" height="728" loading="lazy" decoding="async"
+               alt="프리덤 워크 앤 런 2026 기념 티셔츠 앞면과 뒷면. 뒷면 문구는 Freedom to Leave, Freedom to Lead, Freedom to Learn">
           <h3>기념 티셔츠</h3>
-          <p>참가 신청 때 S부터 3XL까지 원하는 사이즈를 고를 수 있어요.</p>
+          <p>참가 신청 때 아동 110부터 성인 4XL까지 원하는 사이즈를 고를 수 있어요.</p>
         </div>
         <div class="gcard reveal">
           <span class="tag">Medal</span>
@@ -1474,20 +1472,8 @@ a:hover { color: var(--link-red-deep); }
         </div>
         <div class="gcard reveal">
           <span class="tag">Bib</span>
-          <svg viewBox="0 0 300 280" role="img" aria-label="프리덤 워크 앤 런 2026 번호표 시안">
-            <rect x="30" y="50" width="240" height="180" fill="#FFFFFF" stroke="#D9D9D9" stroke-width="3"/>
-            <rect x="30" y="50" width="240" height="40" fill="#ED3928"/>
-            <text x="150" y="76" text-anchor="middle" font-family="'GmarketSans','Pretendard',sans-serif"
-                  font-weight="700" font-size="14" fill="#FFFFFF" letter-spacing="2">FREEDOM WALK &amp; RUN</text>
-            <text x="150" y="170" text-anchor="middle" font-family="'GmarketSans','Pretendard',sans-serif"
-                  font-weight="700" font-size="52" fill="#111" letter-spacing="2">124</text>
-            <text x="150" y="208" text-anchor="middle" font-family="'Pretendard',sans-serif"
-                  font-size="12" fill="#4D4D4D" letter-spacing="1">반포한강공원 · 2026. 10. 24.</text>
-            <circle cx="44" cy="64" r="4" fill="#F8F8F8" stroke="#D9D9D9" stroke-width="1.5"/>
-            <circle cx="256" cy="64" r="4" fill="#F8F8F8" stroke="#D9D9D9" stroke-width="1.5"/>
-            <circle cx="44" cy="216" r="4" fill="#F8F8F8" stroke="#D9D9D9" stroke-width="1.5"/>
-            <circle cx="256" cy="216" r="4" fill="#F8F8F8" stroke="#D9D9D9" stroke-width="1.5"/>
-          </svg>
+          <img class="gimg" src="fwr-bib-mockup.jpg" width="780" height="728" loading="lazy" decoding="async"
+               alt="프리덤 워크 앤 런 2026 번호표 예시. 번호와 이름, 팀명 아래에 '내가 생각하는 자유는?'을 적는 칸이 있다">
           <h3>번호표</h3>
           <p>나의 번호를 가슴에 달고 함께 출발해요.</p>
         </div>
@@ -1727,7 +1713,7 @@ a:hover { color: var(--link-red-deep); }
         <details>
           <summary>티셔츠는 사이즈 선택이나 교환이 가능한가요?<span class="plus" aria-hidden="true"></span></summary>
           <div class="a">
-            <p>참가 신청서를 작성할 때 원하시는 사이즈(S~3XL)를 선택할 수 있어요. 신청 완료 이후에는 사이즈를 변경할 수 없어요.</p>
+            <p>참가 신청서를 작성할 때 원하시는 사이즈(아동 110~150, 성인 XS~4XL)를 선택할 수 있어요. 신청 완료 이후에는 사이즈를 변경할 수 없어요.</p>
             <p>제품 측정 방식에 따라 1~3cm 정도 차이가 있을 수 있으니, 사이즈 가이드를 확인한 뒤 신청해 주세요.</p>
           </div>
         </details>
@@ -1910,26 +1896,44 @@ a:hover { color: var(--link-red-deep); }
         </div>
         <fieldset class="ap-field" data-field="tshirt" aria-describedby="ap-tshirt-help ap-tshirt-err">
           <legend class="ap-label">티셔츠 사이즈<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></legend>
-          <div class="ap-choices ap-choices--3">
+          <p class="ap-subhead">성인</p>
+          <div class="ap-choices ap-choices--4">
+            <label class="ap-choice"><input type="radio" name="tshirt" value="XS" /><span>XS</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="S" /><span>S</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="M" /><span>M</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="L" /><span>L</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="XL" /><span>XL</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="2XL" /><span>2XL</span></label>
             <label class="ap-choice"><input type="radio" name="tshirt" value="3XL" /><span>3XL</span></label>
+            <label class="ap-choice"><input type="radio" name="tshirt" value="4XL" /><span>4XL</span></label>
+          </div>
+          <p class="ap-subhead">아동</p>
+          <div class="ap-choices ap-choices--5">
+            <label class="ap-choice"><input type="radio" name="tshirt" value="아동 110" /><span><span class="sr-only">아동 </span>110</span></label>
+            <label class="ap-choice"><input type="radio" name="tshirt" value="아동 120" /><span><span class="sr-only">아동 </span>120</span></label>
+            <label class="ap-choice"><input type="radio" name="tshirt" value="아동 130" /><span><span class="sr-only">아동 </span>130</span></label>
+            <label class="ap-choice"><input type="radio" name="tshirt" value="아동 140" /><span><span class="sr-only">아동 </span>140</span></label>
+            <label class="ap-choice"><input type="radio" name="tshirt" value="아동 150" /><span><span class="sr-only">아동 </span>150</span></label>
           </div>
           <p class="ap-help" id="ap-tshirt-help">제품 측정 방식에 따라 1~3cm 정도 차이가 있을 수 있어요. 사이즈 가이드를 확인한 뒤 선택해 주세요. 신청 완료 후에는 사이즈를 변경할 수 없어요.</p>
           <details class="ap-more ap-size">
             <summary>상세 사이즈 확인하기</summary>
             <table>
-              <thead><tr><th scope="col">사이즈</th><th scope="col">총길이</th><th scope="col">가슴단면</th><th scope="col">어깨단면</th><th scope="col">소매길이</th></tr></thead>
+              <thead><tr><th scope="col">사이즈</th><th scope="col">총기장</th><th scope="col">가슴단면</th><th scope="col">소매길이</th><th scope="col">어깨단면</th></tr></thead>
               <tbody>
-                <tr><th scope="row">S</th><td>66</td><td>49</td><td>44</td><td>19</td></tr>
-                <tr><th scope="row">M</th><td>70</td><td>52</td><td>47</td><td>20</td></tr>
-                <tr><th scope="row">L</th><td>74</td><td>55</td><td>50</td><td>22</td></tr>
-                <tr><th scope="row">XL</th><td>78</td><td>58</td><td>53</td><td>24</td></tr>
-                <tr><th scope="row">2XL</th><td>82</td><td>61</td><td>56</td><td>26</td></tr>
-                <tr><th scope="row">3XL</th><td>84</td><td>64</td><td>59</td><td>26</td></tr>
+                <tr><th scope="row">아동 110</th><td>44</td><td>33</td><td>13</td><td>29</td></tr>
+                <tr><th scope="row">아동 120</th><td>48</td><td>35</td><td>14</td><td>31</td></tr>
+                <tr><th scope="row">아동 130</th><td>52</td><td>37</td><td>15</td><td>33</td></tr>
+                <tr><th scope="row">아동 140</th><td>56</td><td>40</td><td>16</td><td>35</td></tr>
+                <tr><th scope="row">아동 150</th><td>60</td><td>43</td><td>17</td><td>38</td></tr>
+                <tr><th scope="row">XS</th><td>63</td><td>46</td><td>18</td><td>41</td></tr>
+                <tr><th scope="row">S</th><td>66</td><td>49</td><td>19</td><td>44</td></tr>
+                <tr><th scope="row">M</th><td>70</td><td>52</td><td>20</td><td>47</td></tr>
+                <tr><th scope="row">L</th><td>74</td><td>55</td><td>22</td><td>50</td></tr>
+                <tr><th scope="row">XL</th><td>78</td><td>58</td><td>24</td><td>53</td></tr>
+                <tr><th scope="row">2XL</th><td>82</td><td>61</td><td>26</td><td>56</td></tr>
+                <tr><th scope="row">3XL</th><td>84</td><td>64</td><td>26</td><td>59</td></tr>
+                <tr><th scope="row">4XL</th><td>84</td><td>67</td><td>26</td><td>62</td></tr>
               </tbody>
             </table>
           </details>
@@ -2121,19 +2125,27 @@ a:hover { color: var(--link-red-deep); }
         <label class="ap-label">티셔츠 사이즈<span class="req" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label>
         <select class="ap-input" data-k="tshirt">
           <option value="">사이즈를 골라 주세요</option>
-          <option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option>
+          <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option><option>4XL</option>
+          <option value="아동 110">아동 110</option><option value="아동 120">아동 120</option><option value="아동 130">아동 130</option><option value="아동 140">아동 140</option><option value="아동 150">아동 150</option>
         </select>
         <details class="ap-more ap-size">
           <summary>상세 사이즈 확인하기</summary>
           <table>
-            <thead><tr><th scope="col">사이즈</th><th scope="col">총길이</th><th scope="col">가슴단면</th><th scope="col">어깨단면</th><th scope="col">소매길이</th></tr></thead>
+            <thead><tr><th scope="col">사이즈</th><th scope="col">총기장</th><th scope="col">가슴단면</th><th scope="col">소매길이</th><th scope="col">어깨단면</th></tr></thead>
             <tbody>
-              <tr><th scope="row">S</th><td>66</td><td>49</td><td>44</td><td>19</td></tr>
-              <tr><th scope="row">M</th><td>70</td><td>52</td><td>47</td><td>20</td></tr>
-              <tr><th scope="row">L</th><td>74</td><td>55</td><td>50</td><td>22</td></tr>
-              <tr><th scope="row">XL</th><td>78</td><td>58</td><td>53</td><td>24</td></tr>
-              <tr><th scope="row">2XL</th><td>82</td><td>61</td><td>56</td><td>26</td></tr>
-              <tr><th scope="row">3XL</th><td>84</td><td>64</td><td>59</td><td>26</td></tr>
+              <tr><th scope="row">아동 110</th><td>44</td><td>33</td><td>13</td><td>29</td></tr>
+              <tr><th scope="row">아동 120</th><td>48</td><td>35</td><td>14</td><td>31</td></tr>
+              <tr><th scope="row">아동 130</th><td>52</td><td>37</td><td>15</td><td>33</td></tr>
+              <tr><th scope="row">아동 140</th><td>56</td><td>40</td><td>16</td><td>35</td></tr>
+              <tr><th scope="row">아동 150</th><td>60</td><td>43</td><td>17</td><td>38</td></tr>
+              <tr><th scope="row">XS</th><td>63</td><td>46</td><td>18</td><td>41</td></tr>
+              <tr><th scope="row">S</th><td>66</td><td>49</td><td>19</td><td>44</td></tr>
+              <tr><th scope="row">M</th><td>70</td><td>52</td><td>20</td><td>47</td></tr>
+              <tr><th scope="row">L</th><td>74</td><td>55</td><td>22</td><td>50</td></tr>
+              <tr><th scope="row">XL</th><td>78</td><td>58</td><td>24</td><td>53</td></tr>
+              <tr><th scope="row">2XL</th><td>82</td><td>61</td><td>26</td><td>56</td></tr>
+              <tr><th scope="row">3XL</th><td>84</td><td>64</td><td>26</td><td>59</td></tr>
+              <tr><th scope="row">4XL</th><td>84</td><td>67</td><td>26</td><td>62</td></tr>
             </tbody>
           </table>
         </details>
@@ -2496,10 +2508,17 @@ a:hover { color: var(--link-red-deep); }
       '사이즈를 골라 주세요': 'Choose a size',
       '상세 사이즈 확인하기': 'View size chart',
       '사이즈': 'Size',
-      '총길이': 'Length',
+      '총기장': 'Length',
       '가슴단면': 'Chest width',
       '어깨단면': 'Shoulder width',
       '소매길이': 'Sleeve length',
+      '성인': 'Adult',
+      '아동': 'Kids',
+      '아동 110': 'Kids 110',
+      '아동 120': 'Kids 120',
+      '아동 130': 'Kids 130',
+      '아동 140': 'Kids 140',
+      '아동 150': 'Kids 150',
       '만 14세 이상': '14 or older',
       '만 14세 미만 (보호자 동반)': 'Under 14 (with a guardian)',
       // 속성(placeholder·aria-label)
