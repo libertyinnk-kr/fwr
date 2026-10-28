@@ -606,14 +606,14 @@ a:hover { color: var(--link-red-deep); }
   }
   .kit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 28px; }
   
-  #gifts .kit-grid { grid-template-columns: repeat(3, 1fr); }
+  #gifts .kit-grid { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { #gifts .kit-grid { grid-template-columns: 1fr; } }
   
   #sponsors .kit-grid { grid-template-columns: repeat(4, 1fr); }
   
   @media (max-width: 1024px) { #sponsors .kit-grid { grid-template-columns: 1fr 1fr; } }
   
   .kitem { background: #fff; border: 1px solid var(--border-default); padding: 26px 24px; text-align: center; }
-  .kitem--soon { background: var(--paper); }
   .kitem h4 { font-family: var(--font-kr-display); font-weight: 700; font-size: 16px; margin: 0 0 8px; color: var(--ink); word-break: keep-all; }
   .kitem p { font-size: 13.5px; color: var(--ink); margin: 0; line-height: 1.7; word-break: keep-all; }
   
@@ -1487,11 +1487,6 @@ a:hover { color: var(--link-red-deep); }
           <span class="tag">Care Kit</span>
           <h4>개인용품 세트</h4>
           <p>협찬사가 제공하는 선크림, 비타민C, 프로틴 젤리예요.</p>
-        </div>
-        <div class="kitem kitem--soon reveal">
-          <span class="tag">Coming Soon</span>
-          <h4>추가 구성</h4>
-          <p>기프트 구성이 더해지면 확정되는 대로 이곳에서 공개할게요.</p>
         </div>
       </div>
       <p class="race-note reveal">* 굿즈 이미지는 디자인 시안이에요. 실물과 다를 수 있고, 확정되면 실물 사진으로 교체돼요.</p>
